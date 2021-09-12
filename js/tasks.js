@@ -1,4 +1,5 @@
-import images from "apps.js";
+import images from "./app.js";
+
 // Базовое задание: Создать галерею с возможностью клика по ее элементам и просмотра полноразмерного изображения в модальном окне.
 
 // Получение доступов:
@@ -10,7 +11,7 @@ const modalContainer = document.querySelector("div.lightbox");
 const modalCloseBtn = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
-// к элементу изображения в модалке
+// к элементу изображения в модальном окне
 const modalImageElement = modalContainer.querySelector(".lightbox__image");
 
 // Функция для создания и рендера разметки по массиву данных и по предоставленному шаблону
@@ -34,11 +35,11 @@ function createGalleryMarkup(imagesArray) {
 // Создание и рендер разметки по массиву данных
 const galleryMarkup = createGalleryMarkup(images);
 
-// Добавление разметки всех лишек галереи в DOM
+// Добавление разметки всех li-элементов галереи в DOM
 galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
 
 // Реализация делегирования на галерее ul.js-gallery
-// Функция, которая подменяет пути к оригинальным изображениям в окне модалки
+// Функция, которая подменяет пути к оригинальным изображениям в модальном окне
 function openModal(event) {
   event.preventDefault();
 
@@ -56,13 +57,13 @@ function openModal(event) {
 
   modalContainer.classList.add("is-open");
 
-  // Добавление слушателя события на window для закрытия модалки по клавише ESC
+  // Добавление слушателя события на window для закрытия модального окна по клавише ESC
   window.addEventListener("keydown", onPressEscape);
   // Добавление слушателя события на window для перелистования изображение по клавишам "вправо" и "влево"
   window.addEventListener("keydown", slideImage);
 }
 
-// Функция для закрытия модалки по клику на кнопку закрытия
+// Функция для закрытия модального окна по клику на кнопку закрытия
 function closeModal() {
   modalImageElement.setAttribute("src", "");
   modalImageElement.setAttribute("alt", "");
@@ -77,7 +78,7 @@ function closeModal() {
 // Добавление слушателя события на контейнер галереи
 galleryContainer.addEventListener("click", openModal);
 
-// Добавление слушателя события на кнопку закрытия модалки
+// Добавление слушателя события на кнопку закрытия модального окна
 modalCloseBtn.addEventListener("click", closeModal);
 
 // Дополнительные задания
